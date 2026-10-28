@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String         @id @default(cuid())
+  email               String         @unique
+  passwordHash        String
+  name                String
+  avatarUrl           String?
+  title               String?
+  role                String         @default("USER") // USER, ADMIN
+  plan                String         @default("FREE") // FREE, PRO
+  aiCreditsUsed       Int            @default(0)
+  aiCreditsLimit      Int            @default(15)
+  onboardingCompleted Boolean        @default(false)
+  geminiApiKey        String?
+  resetToken          String?
+  resetTokenExpiry    DateTime?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+
+  resumes             Resume[]
+  portfolios          Portfolio[]
+  coverLetters        CoverLetter[]
+  subscription        Subscription?
+}
+
+model Resume {
+  id                 String          @id @default(cuid())
+  userId             String
+  user               User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title              String          @default("Untitled Resume")
+  targetRole         String?
+  targetCompany      String?
+  summary            String?
+  personalInfo       String          @default("{}") // JSON
+  experience         String          @default("[]") // JSON
+  education          String          @default("[]") // JSON
+  skills             String          @default("[]") // JSON
+  projects           String          @default("[]") // JSON
+  certifications     String          @default("[]") // JSON
+  achievements       String          @default("[]") // JSON
+  languages          String          @default("[]") // JSON
+  customSections     String          @default("[]") // JSON
+  sectionOrder       String          @default("[\"summary\",\"experience\",\"education\",\"skills\",\"projects\",\"certifications\",\"achievements\",\"languages\",\"customSections\"]") // JSON
+  sectionVisibility String          @default("{\"summary\":true,\"experience\":true,\"education\":true,\"skills\":true,\"projects\":true,\"certifications\":true,\"achievements\":true,\"languages\":true,\"customSections\":true}") // JSON
+  templateId         String          @default("modern") // modern, minimal, executive, technical, creative
+  typography         String          @default("{\"font\":\"inter\",\"fontSize\":\"normal\",\"accentColor\":\"#2563eb\",\"lineHeight\":\"normal\"}") // JSON
+  layoutConfig       String          @default("{\"paperFormat\":\"a4\",\"margins\":\"normal\",\"showIcons\":true}") // JSON
+  isPublic           Boolean         @default(false)
+  shareSlug          String?         @unique
+  lastAtsScore       Int?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  versions           ResumeVersion[]
+  tailorings         JobTailoring[]
+  coverLetters       CoverLetter[]
+  portfolios         Portfolio[]
+}
+
+model ResumeVersion {
+  id            String   @id @default(cuid())
+  resumeId      String
+  resume        Resume   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  versionNumber Int
+  changeSummary String   @default("Auto-saved version")
+  snapshot      String   // Full JSON snapshot
+  createdAt     DateTime @default(now())
+}
+
+model Portfolio {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumeId       String?
+  resume         Resume?  @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  slug           String   @unique
+  title          String
+  tagline        String?
+  bio            String?
+  theme          String   @default("minimal-slate") // editorial, tech-dark, minimal-slate, creative-warm
+  accentColor    String   @default("#2563eb")
+  sectionsConfig String   @default("{\"showAbout\":true,\"showExperience\":true,\"showProjects\":true,\"showSkills\":true,\"showEducation\":true,\"showContact\":true}") // JSON
+  customLinks    String   @default("[]") // JSON
+  customDomain   String?
+  isPublished    Boolean  @default(false)
+  seoMetadata    String?  // JSON
+  viewsCount     Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model JobTailoring {
+  id               String   @id @default(cuid())
+  resumeId         String
+  resume           Resume   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  jobTitle         String
+  company          String
+  jobDescription   String
+  matchScore       Int      @default(0)
+  matchingKeywords String   @default("[]") // JSON
+  missingKeywords  String   @default("[]") // JSON
+  recommendations  String   @default("[]") // JSON
+  tailoredSummary  String?
+  tailoredBullets  String?  // JSON
+  createdAt        DateTime @default(now())
+}
+
+model CoverLetter {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumeId       String?
+  resume         Resume?  @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  jobTitle       String
+  company        String
+  jobDescription String?
+  content        String
+  tone           String   @default("professional")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Subscription {
+  id                   String    @id @default(cuid())
+  userId               String    @unique
+  user                 User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  status               String    @default("active")
+  plan                 String    @default("FREE")
+  currentPeriodEnd     DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}
