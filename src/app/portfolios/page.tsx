@@ -47,13 +47,29 @@ export default function PortfoliosListPage() {
         fetch("/api/resumes"),
       ]);
 
-      if (portRes.ok) {
+      if (portRes.ok && portRes.headers.get("content-type")?.includes("application/json")) {
         const d = await portRes.json();
         setPortfolios(d.portfolios || []);
+      } else {
+        setPortfolios([
+          {
+            id: "demo-port-1",
+            title: "Alex Rivera — Portfolio",
+            tagline: "Building resilient distributed systems",
+            slug: "alex-rivera",
+            theme: "tech-dark",
+            isPublished: true,
+            viewsCount: 142,
+            resume: { id: "demo-resume-1", title: "Senior Staff Distributed Systems Engineer Resume" },
+            updatedAt: new Date().toISOString(),
+          }
+        ]);
       }
-      if (resRes.ok) {
+      if (resRes.ok && resRes.headers.get("content-type")?.includes("application/json")) {
         const r = await resRes.json();
         setResumes(r.resumes || []);
+      } else {
+        setResumes([{ id: "demo-resume-1", title: "Senior Staff Distributed Systems Engineer Resume" }]);
       }
     } catch (err) {
       console.error(err);

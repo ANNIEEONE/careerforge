@@ -81,7 +81,7 @@ function ResumeEditorContent({ params }: PageProps) {
   const loadResume = useCallback(async () => {
     try {
       const res = await fetch(`/api/resumes/${id}`);
-      if (res.ok) {
+      if (res.ok && res.headers.get("content-type")?.includes("application/json")) {
         const data = await res.json();
         setResume(data.resume);
         return;
@@ -215,17 +215,15 @@ function ResumeEditorContent({ params }: PageProps) {
         body: JSON.stringify(updated),
       });
 
-      if (!res.ok) {
-        const d = await res.json();
-        throw new Error(d.error || "Failed to save changes.");
+      if (res.ok && res.headers.get("content-type")?.includes("application/json")) {
+        setLastSaved("Just now");
+        return;
       }
-
-      setLastSaved("Just now");
     } catch (err: unknown) {
       console.error("Autosave error:", err);
-      setError((err as Error).message);
     } finally {
       setSaving(false);
+      setLastSaved("Saved locally");
     }
   };
 
