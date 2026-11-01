@@ -28,10 +28,9 @@ export default function LoginPage() {
         const data = await res.json();
         if (typeof window !== "undefined") {
           localStorage.setItem("careerforge_user", JSON.stringify(data.user));
+          window.location.href = "/dashboard";
+          return;
         }
-        router.push("/dashboard");
-        router.refresh();
-        return;
       }
     } catch {
       // Fallback for static hosts (e.g., Netlify preview)
@@ -45,10 +44,8 @@ export default function LoginPage() {
         plan: "PRO",
         monthlyAiCount: 42,
       }));
+      window.location.href = "/dashboard";
     }
-    router.push("/dashboard");
-    router.refresh();
-    setLoading(false);
   };
 
   const handleDemoSignIn = async () => {
@@ -68,10 +65,9 @@ export default function LoginPage() {
         const data = await res.json();
         if (typeof window !== "undefined") {
           localStorage.setItem("careerforge_user", JSON.stringify(data.user));
+          window.location.href = "/dashboard";
+          return;
         }
-        router.push("/dashboard");
-        router.refresh();
-        return;
       }
     } catch {
       // Fallback for static hosts
@@ -85,10 +81,8 @@ export default function LoginPage() {
         plan: "PRO",
         monthlyAiCount: 42,
       }));
+      window.location.href = "/dashboard";
     }
-    router.push("/dashboard");
-    router.refresh();
-    setLoading(false);
   };
 
   return (

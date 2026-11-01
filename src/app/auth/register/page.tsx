@@ -30,8 +30,11 @@ export default function RegisterPage() {
         throw new Error(data.error || "Registration failed.");
       }
 
-      router.push("/onboarding");
-      router.refresh();
+      if (typeof window !== "undefined") {
+        localStorage.setItem("careerforge_user", JSON.stringify(data.user));
+        window.location.href = "/dashboard";
+        return;
+      }
     } catch (err: unknown) {
       setError((err as Error).message);
     } finally {

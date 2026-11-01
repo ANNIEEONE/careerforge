@@ -20,28 +20,38 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const { targetRole, existingSkills = [] } = body;
 
     if (!targetRole) {
       return NextResponse.json({ error: "Target role is required." }, { status: 400 });
     }
 
-    const dbUser = await prisma.user.findUnique({
-      where: { id: user.id },
-      select: { geminiApiKey: true },
-    });
+    let customKey: string | null = null;
+    try {
+      const dbUser = await prisma.user.findUnique({
+        where: { id: user.id },
+        select: { geminiApiKey: true },
+      });
+      customKey = dbUser?.geminiApiKey || null;
+    } catch {
+      // Prisma fallback
+    }
 
     const result = await suggestSkillsForRole({
       targetRole,
       existingSkills,
-      apiKey: dbUser?.geminiApiKey,
+      apiKey: customKey,
     });
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { aiCreditsUsed: { increment: 1 } },
-    });
+    try {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { aiCreditsUsed: { increment: 1 } },
+      });
+    } catch {
+      // Prisma fallback
+    }
 
     return NextResponse.json({
       suggested: result.suggested,

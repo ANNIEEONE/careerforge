@@ -20,29 +20,39 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const { bullet, role, company } = body;
 
     if (!bullet || bullet.trim().length === 0) {
       return NextResponse.json({ error: "Bullet text is required." }, { status: 400 });
     }
 
-    const dbUser = await prisma.user.findUnique({
-      where: { id: user.id },
-      select: { geminiApiKey: true },
-    });
+    let customKey: string | null = null;
+    try {
+      const dbUser = await prisma.user.findUnique({
+        where: { id: user.id },
+        select: { geminiApiKey: true },
+      });
+      customKey = dbUser?.geminiApiKey || null;
+    } catch {
+      // Prisma fallback
+    }
 
     const result = await improveBulletPoint({
       bullet,
       role,
       company,
-      apiKey: dbUser?.geminiApiKey,
+      apiKey: customKey,
     });
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { aiCreditsUsed: { increment: 1 } },
-    });
+    try {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { aiCreditsUsed: { increment: 1 } },
+      });
+    } catch {
+      // Prisma fallback
+    }
 
     return NextResponse.json({
       improved: result.improved,

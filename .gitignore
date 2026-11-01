@@ -38,6 +38,7 @@ yarn-error.log*
 # sqlite database
 prisma/*.db
 prisma/*.db-journal
+careerforge-state.json
 
 # vercel & netlify
 .vercel

@@ -83,8 +83,11 @@ function ResumeEditorContent({ params }: PageProps) {
       const res = await fetch(`/api/resumes/${id}`);
       if (res.ok && res.headers.get("content-type")?.includes("application/json")) {
         const data = await res.json();
-        setResume(data.resume);
-        return;
+        if (data?.resume) {
+          setResume(data.resume);
+          setLoading(false);
+          return;
+        }
       }
     } catch {
       // Fallback for static preview
@@ -208,6 +211,7 @@ function ResumeEditorContent({ params }: PageProps) {
   // Autosave function with debounce
   const saveResumeChanges = async (updated: ResumeData) => {
     setSaving(true);
+    let success = false;
     try {
       const res = await fetch(`/api/resumes/${id}`, {
         method: "PUT",
@@ -216,14 +220,13 @@ function ResumeEditorContent({ params }: PageProps) {
       });
 
       if (res.ok && res.headers.get("content-type")?.includes("application/json")) {
-        setLastSaved("Just now");
-        return;
+        success = true;
       }
     } catch (err: unknown) {
       console.error("Autosave error:", err);
     } finally {
       setSaving(false);
-      setLastSaved("Saved locally");
+      setLastSaved(success ? "Just now" : "Saved locally");
     }
   };
 

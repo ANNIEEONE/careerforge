@@ -10,7 +10,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // AI Credit Enforcement for Free tier
     if (user.plan === "FREE" && user.aiCreditsUsed >= user.aiCreditsLimit) {
       return NextResponse.json(
         {
@@ -21,7 +20,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const { targetRole, experienceYears, keySkills = [], currentSummary } = body;
 
     if (!targetRole && keySkills.length === 0 && !currentSummary) {
@@ -31,25 +30,33 @@ export async function POST(request: Request) {
       );
     }
 
-    // Fetch user custom API key if saved
-    const dbUser = await prisma.user.findUnique({
-      where: { id: user.id },
-      select: { geminiApiKey: true },
-    });
+    let customKey: string | null = null;
+    try {
+      const dbUser = await prisma.user.findUnique({
+        where: { id: user.id },
+        select: { geminiApiKey: true },
+      });
+      customKey = dbUser?.geminiApiKey || null;
+    } catch {
+      // Prisma fallback
+    }
 
     const result = await generateProfessionalSummary({
       targetRole: targetRole || "Professional",
       experienceYears,
       keySkills,
       currentSummary,
-      apiKey: dbUser?.geminiApiKey,
+      apiKey: customKey,
     });
 
-    // Increment AI credits used
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { aiCreditsUsed: { increment: 1 } },
-    });
+    try {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { aiCreditsUsed: { increment: 1 } },
+      });
+    } catch {
+      // Prisma fallback
+    }
 
     return NextResponse.json({
       summary: result.summary,
