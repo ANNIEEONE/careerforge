@@ -1,41 +1,77 @@
-# CareerForge — AI-Powered Resume & Portfolio Studio
+# CareerForge — AI-Powered Resume & Portfolio Studio 🚀
 
-CareerForge is a production-ready, full-stack SaaS web application designed to help software engineers, product managers, and modern professionals build ATS-optimized resumes, tailor them against real job postings using AI, export pixel-perfect PDFs and native `.docx` files, and deploy live personal portfolio websites with custom public URLs.
+[![Next.js](https://img.shields.io/badge/Next.js-16.4.3-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-6.4.1-2D3748?logo=prisma)](https://www.prisma.io/)
+[![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini_LLM-orange?logo=google)](https://aistudio.google.com/)
+[![Stripe](https://img.shields.io/badge/Monetization-Stripe_₹59_INR-635BFF?logo=stripe)](https://stripe.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+**CareerForge** is a production-ready, full-stack SaaS web application engineered to help software engineers, designers, product managers, and modern professionals architect ATS-proof resumes, tailor them against real job descriptions using Google Gemini AI, export vector PDFs and native Microsoft Word `.docx` files, and publish live personal developer portfolios with custom public URLs.
 
 ---
 
-## 🌟 Key Features
+## 📸 Screenshots Showcase
 
-### 1. AI Resume Studio & Live Preview
-- **Split-Pane Editor**: Real-time side-by-side editing with instant live rendering on the canvas.
-- **5 ATS-Proof Templates**:
-  - `Modern Standard`: Balanced sans-serif layout with highest parser compatibility score.
-  - `Minimalist Slate`: High-contrast editorial typography with zero clutter.
-  - `Executive Serif`: Classical serif hierarchy with subtle double rules for leadership roles.
-  - `Tech Matrix`: Dense, high-information layout with monospace badges and tool matrix.
-  - `Creative Studio`: Bold headers and modern asymmetric card styling.
-- **Formatting Customization**: A4 and US Letter page sizes, typography scale, 7 accent colors, and margin controls.
-- **Autosave & Version Control**: Automatic checkpointing and manual snapshots with one-click rollback.
-- **Multi-Format Export**: Clean, printable vector PDF and native downloadable Microsoft Word `.docx` documents.
+### 1. Studio Landing Page & ₹59/mo Pro Tier
+![Landing Page](public/screenshots/landing.png)
 
-### 2. AI Writing Assistant & Job Tailoring
-- **Google Gemini Integration**: Connected to Google Gemini 2.5 Flash with fallback to a smart rule-based heuristic generation engine.
-- **Executive Summary Generator**: Synthesizes 3-4 sentence value propositions from user background and target role.
-- **Bullet Improver (Google XYZ Formula)**: Converts weak passive bullets into quantifiable accomplishment statements:
+### 2. User Dashboard & Project Management
+![Dashboard](public/screenshots/dashboard.png)
+
+### 3. Split-Pane Live Editor with Pinterest "Swiss Sidebar" Layout
+*Featuring 33% tinted sidebar with monogram badge, contact glyphs, skill badges, and a vertical timeline rail.*
+![Swiss Sidebar Editor](public/screenshots/editor_swiss_sidebar.png)
+
+### 4. Pinterest "Quiet Luxury Editorial" Layout
+*Featuring Roman serif typography, wide tracking, and numbered sections (01/SUMMARY, 02/EXPERIENCE).*
+![Quiet Luxury Editorial](public/screenshots/editor_editorial_luxury.png)
+
+### 5. Instant Personal Portfolio Generator
+*Public responsive developer portfolio deployed at `/p/[slug]` with interactive contact form and live view counters.*
+![Portfolio Website](public/screenshots/portfolio.png)
+
+---
+
+## 🌟 Key Product Features
+
+### 1. AI Resume Studio & Live Split-Pane Canvas
+- **Real-Time Split-Pane Editing**: Changes in personal info, experience, education, projects, skills, certifications, and languages reflect instantaneously on the live resume preview canvas.
+- **8 Professionally Designed Templates**:
+  - 🟢 **Modern Standard (Free)**: Balanced sans-serif layout with highest parser compatibility score.
+  - 🟢 **Minimalist Slate (Free)**: High-contrast editorial typography with zero clutter.
+  - 🔒 **Swiss Split Sidebar (Pro - Trending on Pinterest)**: Two-column layout with 33% tinted sidebar, circular monogram avatar, stacked contact glyphs, and a connected vertical timeline rail with node indicators.
+  - 🔒 **Quiet Luxury Editorial (Pro - Most Pinned)**: Haute-couture serif typography (Playfair/Cormorant), wide tracking, and numbered index headers (`01 / SUMMARY`, `02 / EXPERIENCE`).
+  - 🔒 **Nordic Clean (Pro - New)**: Bauhaus asymmetric clean layout with sharp accent bar and high-contrast chips.
+  - 🔒 **Executive Serif (Pro)**: Classical serif hierarchy with subtle double rules for leadership roles.
+  - 🔒 **Tech Matrix (Pro)**: Dense, high-information layout with monospace badges and developer tool grid.
+  - 🔒 **Creative Studio (Pro)**: Expressive typography with banner headers and styled card badges.
+- **Formatting Customization**: A4 and US Letter page sizes, typography scale, 6 accent colors (Indigo, Emerald, Rose, Slate, Violet, Amber), and layout adjustments.
+- **Autosave & Document Version History**: Continuous autosave with version snapshots and one-click rollback.
+
+### 2. Google Gemini AI Writing Engine & ATS Tailoring
+- **Google Gemini 2.5 Flash Integration**: Real multimodal LLM endpoints with intelligent fallback heuristic algorithms.
+- **Executive Summary Generator**: Synthesizes 3-4 sentence impactful value propositions tailored to target roles.
+- **Bullet Improver (Google XYZ Formula)**: Converts weak passive statements into quantifiable accomplishment statements:
   > *"Accomplished [X], measured by [Y], by doing [Z]"*
-- **ATS Match Scanner**:
+- **Job-Description ATS Match Scanner**:
   - Compares candidate resume against pasted job description.
   - Calculates realistic ATS match score (0-100%).
   - Identifies matched keywords and highlights missing critical keywords.
-  - Provides actionable bullet recommendations.
+  - Suggests targeted bullet improvements without keyword stuffing.
 - **Targeted Cover Letter Generator**: Synthesizes customized cover letters tailored directly to the target role and company.
 
-### 3. Resume Upload & Heuristic Parsing
+### 3. Multi-Format Document Export
+- **Vector PDF Export**: Clean, printable PDF using native CSS `@media print` with crisp vector fonts, preserved page breaks, and zero raster degradation.
+- **Native Microsoft Word `.docx` Generation**: Client-side/server-side `.docx` generation using the `docx` library with styled headings, bold role titles, bulleted accomplishments, and metadata.
+
+### 4. Resume Upload & Document Parsing
 - Supports drag-and-drop upload of **PDF**, **DOCX**, and **TXT** files.
 - Extracts candidate name, email, phone, location, LinkedIn, GitHub, summary, work history, education, skills, and projects.
 - Shows content completeness score and extraction analysis before loading into the studio.
 
-### 4. Personal Web Portfolio Builder
+### 5. Personal Web Portfolio Builder
 - Converts resume data into an interactive personal website with a single click.
 - 4 distinct portfolio themes:
   - `Minimalist Slate`
@@ -46,188 +82,125 @@ CareerForge is a production-ready, full-stack SaaS web application designed to h
 - Public URL routing (e.g., `/p/alex-rivera`) with view counter and responsive mobile/desktop viewports.
 - One-click public visibility switch (Publish / Unpublish).
 
-### 5. Freemium Monetization & Server-Enforced Entitlements
-- **Free Starter Plan**: Up to 3 active resumes, standard templates, 15 AI actions/month, PDF/DOCX exports, 1 portfolio.
-- **Pro Studio Plan (₹59/mo)**: Unlimited resumes, all 5 premium templates, unlimited AI tailoring, cover letter generator, custom slug priority.
-- **Stripe Integration & Evaluator Test Switcher**:
-  - Production-ready Stripe Checkout session and webhook endpoints.
-  - Built-in **Instant Test Switcher** in Settings & Billing to test Pro features without needing live credit card charges.
-  - Server-enforced plan validation on all API endpoints.
-
-### 6. Security, Privacy & Data Portability
-- Secure session tokens via `jose` JWTs in HTTP-only cookies.
-- Passwords hashed with `bcryptjs` (salt rounds: 12).
-- Complete data export (GDPR-compliant JSON archive of all resumes, snapshots, portfolios, and tailoring history).
-- Permanent account erasure and cascaded deletion.
-
----
-
-## 🛠️ Tech Stack & Architecture
-
-- **Framework**: Next.js 16 (App Router) + TypeScript + React 19
-- **Styling**: Tailwind CSS v4 with custom print stylesheets
-- **Database & ORM**: SQLite + Prisma 6.4 (self-contained, zero-setup, portable; easily swappable to PostgreSQL/Supabase via `schema.prisma`)
-- **Authentication**: JWT session tokens via `jose` and `bcryptjs`
-- **Document Generation**: `docx` library for Microsoft Word export, browser printable vector canvas for PDF
-- **Document Parsing**: `mammoth` (DOCX) and regex tokenizers
-- **AI Models**: Google Gemini 2.5 Flash via REST API with intelligent heuristic fallback engine
-- **Billing**: Stripe SDK + server-side verification webhooks
+### 6. Freemium Monetization & Server-Enforced Entitlements
+- **Free Starter Plan**:
+  - Up to 3 active resumes
+  - Standard templates (`modern`, `minimal`)
+  - 15 monthly AI writing credits
+  - Unlimited PDF & Word exports
+  - 1 public portfolio
+- **Pro Plan (₹59 INR / month)**:
+  - **Unlimited resumes** and document versions
+  - **All 8 Premium Pinterest & ATS Templates** (Swiss Sidebar, Quiet Luxury, Nordic Clean, Executive, Tech Matrix, Creative)
+  - **Unlimited AI writing and job tailoring**
+  - **Unlimited ATS match scans & keyword optimizations**
+  - **Unlimited portfolio websites** with custom slugs
+- **Stripe Checkout Integration**: Configured with Indian Rupee (`currency: "inr"`, `unit_amount: 5900`).
+- **Instant Test Mode Switcher**: In **Settings → Subscription**, click **"Switch to Pro (Test Mode)"** to immediately toggle between Free and Pro to test all premium templates and exports without requiring real payment cards.
 
 ---
 
-## 🚀 Quickstart & Setup
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    Client["Browser / Client (Next.js 16 App Router)"]
+    
+    subgraph Frontend["Frontend Layer"]
+        PageLanding["/ (Landing Page & Pricing)"]
+        PageDash["/dashboard (Document Hub)"]
+        PageEditor["/resumes/[id] (Split-Pane Live Canvas)"]
+        PagePortfolio["/portfolios/[id] (Portfolio Editor)"]
+        PagePublic["/p/[slug] (Public SSR Portfolio)"]
+    end
+    
+    subgraph Backend["API & Server Routes"]
+        AuthAPI["/api/auth/* (JWT, Cookies, Bcrypt)"]
+        ResumeAPI["/api/resumes/* (CRUD, Entitlements, Versions)"]
+        AIAPI["/api/ai/* (Gemini LLM & Google XYZ Engine)"]
+        UploadAPI["/api/resumes/upload (PDF & DOCX Parser)"]
+        BillingAPI["/api/billing/* (Stripe Checkout ₹59 INR)"]
+        ExportAPI["/api/resumes/[id]/export/docx (.docx Builder)"]
+    end
+    
+    subgraph Data["Database & External Services"]
+        PrismaORM["Prisma 6.4 ORM"]
+        Database[("SQLite Database / dev.db")]
+        GeminiAPI["Google Gemini 2.5 Flash API"]
+        StripeAPI["Stripe API (INR Checkout)"]
+    end
+    
+    Client --> Frontend
+    Frontend --> Backend
+    Backend --> PrismaORM --> Database
+    AIAPI --> GeminiAPI
+    BillingAPI --> StripeAPI
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| **Framework** | Next.js 16 (App Router + Turbopack) | Server-Side Rendering, API Routes, Streaming UI |
+| **Language** | TypeScript 5 | End-to-end static type safety |
+| **Styling** | Tailwind CSS v4 + Lucide Icons | Responsive styling, dark/light theme, modern UI |
+| **Database & ORM** | Prisma 6.4 + SQLite | Schema migrations, typed queries, relations |
+| **Authentication** | Jose (JWT) + BcryptJS | Secure HTTP-only cookies, password hashing |
+| **AI LLM** | Google Gemini API + Rule Heuristics | Summary generation, XYZ bullets, ATS scoring |
+| **Document Parser** | `pdf-parse` + `mammoth` | Extraction of resume fields from PDF and DOCX |
+| **Document Export** | Print CSS (Vector PDF) + `docx` | High-fidelity multi-page PDF & Word downloads |
+| **Payments** | Stripe API (`inr` / ₹59) | Checkout sessions, webhook verification |
+| **Deployment** | GitHub + Netlify / Node.js | Continuous deployment & cloud hosting |
+
+---
+
+## 🚀 Quick Start & Local Setup
 
 ### Prerequisites
-- Node.js 18+ (tested on Node v20/v26)
-- npm 9+
+- **Node.js**: v20 or higher
+- **npm** or **pnpm**
 
-### 1. Clone & Navigate to Repository
+### Installation
+
 ```bash
+# 1. Clone the repository
+git clone https://github.com/ANNIEEONE/careerforge.git
 cd careerforge
-```
 
-### 2. Install Dependencies
-```bash
+# 2. Install dependencies
 npm install
-```
 
-### 3. Configure Environment Variables
-Copy `.env.example` to `.env`:
-```bash
+# 3. Setup environment variables
 cp .env.example .env
-```
 
-Default `.env` configuration:
-```env
-# Database configuration (SQLite for zero-config portable runtime)
-DATABASE_URL="file:./dev.db"
-
-# Authentication secret
-JWT_SECRET="careerforge-super-secret-jwt-key-production-ready-2025"
-
-# Google Gemini API Key (Optional - Smart Heuristic Engine runs if blank)
-GEMINI_API_KEY=""
-
-# Stripe Payment Gateway (Optional - Built-in Test Switcher available)
-STRIPE_SECRET_KEY=""
-STRIPE_WEBHOOK_SECRET=""
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=""
-
-# Application URL
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-```
-
-### 4. Initialize Database
-Generate Prisma client and push database schema:
-```bash
-npx prisma generate
+# 4. Initialize database schema
 npx prisma db push
-```
 
-### 5. Start Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 🧪 Automated End-to-End Workflow Testing
-
-CareerForge includes a comprehensive test suite that validates all 18 primary workflows:
-- User registration and cookie authentication
-- Starter resume provisioning
-- Real-time autosave
-- AI summary, bullet improver, and skill suggestions
-- ATS job description match scanner
-- AI cover letter generation
-- Version snapshot creation and rollback
-- Resume duplication
-- Native `.docx` export verification
-- Portfolio generation and public `/p/[slug]` route verification
-- Plan limit enforcement and Pro tier switching
-- GDPR complete JSON data export
-
-### Run the Audit Suite:
-With the application running on port 3000:
-```bash
-node scripts/test-workflow.mjs
-```
-
----
-
-## 📁 Project Structure
-
-```
-careerforge/
-├── prisma/
-│   ├── dev.db                 # SQLite local database
-│   └── schema.prisma          # Database schema (User, Resume, Version, Portfolio, etc.)
-├── public/                    # Static assets
-├── scripts/
-│   └── test-workflow.mjs      # End-to-end API audit script
-├── src/
-│   ├── app/
-│   │   ├── api/               # Server-side API endpoints
-│   │   │   ├── ai/            # AI summary, bullets, skills, tailoring, cover letter
-│   │   │   ├── auth/          # Register, login, logout, me, password reset
-│   │   │   ├── billing/       # Plans, checkout, test toggle, stripe webhook
-│   │   │   ├── portfolios/    # CRUD and public slug resolution
-│   │   │   ├── resumes/       # CRUD, versions, duplication, docx export, upload
-│   │   │   └── user/          # Profile, password, export, deletion
-│   │   ├── auth/              # Sign in, register, forgot-password, reset-password
-│   │   ├── dashboard/         # Project management dashboard
-│   │   ├── onboarding/        # 3-step setup for new users
-│   │   ├── p/[slug]/          # Public portfolio website route
-│   │   ├── portfolios/        # Portfolio management and customizer studio
-│   │   ├── resumes/[id]/      # Split-pane AI Resume Studio
-│   │   ├── settings/          # Profile, API keys, billing, privacy
-│   │   ├── globals.css        # Tailwind styles & print CSS
-│   │   ├── layout.tsx         # Root layout
-│   │   └── page.tsx           # Editorial landing page
-│   ├── components/
-│   │   ├── AtsScoreModal.tsx  # Job description ATS match scanner
-│   │   ├── Icons.tsx          # SVG icons
-│   │   ├── Navbar.tsx         # Global navigation bar & session state
-│   │   ├── ResumePreview.tsx  # Live multi-template resume renderer
-│   │   ├── UploadModal.tsx    # Drag-and-drop resume parser
-│   │   └── VersionHistoryModal.tsx # Snapshot & rollback manager
-│   └── lib/
-│       ├── ai.ts              # Gemini API client & intelligent heuristic engine
-│       ├── auth.ts            # Jose JWT & bcrypt authentication helpers
-│       ├── defaults.ts        # Starter candidate data
-│       ├── docx-export.ts     # Microsoft Word document generator
-│       ├── parser.ts          # PDF/DOCX text extractor & heuristic parser
-│       ├── prisma.ts          # Singleton Prisma client
-│       ├── templates.ts       # Template configurations & palettes
-│       └── types.ts           # TypeScript models & interfaces
-├── .env.example
-├── next.config.ts
-├── package.json
-└── tsconfig.json
-```
-
----
-
-## 🚢 Production Deployment
-
-### Build the Application
-```bash
+# 5. Build and launch application
 npm run build
-```
-
-### Start in Production Mode
-```bash
 npm run start
 ```
 
-### Deploying to Vercel / Railway / Render
-1. Push repository to GitHub/GitLab.
-2. For cloud serverless platforms (e.g. Vercel), swap `provider = "sqlite"` to `provider = "postgresql"` in `prisma/schema.prisma` and supply a Supabase or Neon PostgreSQL connection string in `DATABASE_URL`.
-3. Set environment variables (`JWT_SECRET`, `NEXT_PUBLIC_APP_URL`, `GEMINI_API_KEY`, `STRIPE_SECRET_KEY`).
-4. Set build command to `prisma generate && prisma db push && next build`.
+Open **[http://localhost:3000](http://localhost:3000)** in your browser.
+
+### Test Credentials
+- **Email:** `demo@careerforge.io` (or `alex.rivera@example.com`)
+- **Password:** `CareerForge123!`
+
+---
+
+## 🎓 Viva & Project Demonstration Highlights
+
+If you are demonstrating this project for academic viva, practical review, or technical evaluation, check out the comprehensive **[Viva & Workflow Guide](docs/CareerForge_Viva_and_Workflow_Guide.pdf)** which includes:
+- **System Design & Data Flow**: Deep dive into the client-server boundaries, Prisma models, and state persistence.
+- **AI Integration Architecture**: How prompts are structured with Google's XYZ formula and how heuristic fallbacks protect against API rate limits.
+- **ATS Scoring Algorithm**: Mathematical breakdown of keyword extraction, token frequency analysis, and relevance weighting.
+- **Multi-Format Export Pipeline**: Vector Print CSS media queries vs Microsoft Word OpenXML (`docx`) document compilation.
+- **Top 25 Viva Questions & Model Answers**: Complete coverage of common examiner questions (e.g., SSR vs CSR, SQL injection prevention, cookie security, and performance optimizations).
 
 ---
 
 ## 📄 License
-MIT License. Built with pride for engineers and career builders.
+This project is open-source and available under the [MIT License](LICENSE).

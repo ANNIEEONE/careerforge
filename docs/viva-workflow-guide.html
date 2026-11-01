@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerForge — Comprehensive Viva, Architecture & Workflow Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #4f46e5;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --emerald-600: #059669;
+      --emerald-50: #ecfdf5;
+      --amber-600: #d97706;
+      --amber-50: #fffbeb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--slate-800);
+      background-color: #ffffff;
+      line-height: 1.6;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+
+    /* Cover / Title Page */
+    .cover {
+      border-bottom: 2px solid var(--slate-200);
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-primary { background: var(--primary-light); color: var(--primary); }
+    .badge-success { background: var(--emerald-50); color: var(--emerald-600); }
+    .badge-warning { background: var(--amber-50); color: var(--amber-600); }
+
+    h1.title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--slate-600);
+      margin-bottom: 20px;
+    }
+
+    .meta-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 11.5px;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: var(--slate-900);
+      font-weight: 600;
+    }
+
+    .meta-item span {
+      color: var(--slate-600);
+    }
+
+    /* Headings */
+    h2.section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--slate-900);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 6px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3.sub-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: var(--slate-700);
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    li {
+      margin-bottom: 5px;
+      color: var(--slate-700);
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-left: 4px solid var(--primary);
+      background: var(--primary-light);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 12px;
+    }
+
+    .callout-success {
+      border-left-color: var(--emerald-600);
+      background: var(--emerald-50);
+    }
+
+    .callout-warning {
+      border-left-color: var(--amber-600);
+      background: var(--amber-50);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 12px;
+    }
+
+    th, td {
+      border: 1px solid var(--slate-200);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--slate-100);
+      color: var(--slate-900);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background: var(--slate-50);
+    }
+
+    /* Code & Technical Blocks */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: var(--slate-100);
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: var(--primary-dark);
+    }
+
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: var(--slate-900);
+      color: #e2e8f0;
+      padding: 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 14px 0;
+      line-height: 1.45;
+    }
+
+    /* Viva Q&A Cards */
+    .qa-card {
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .qa-q {
+      font-weight: 700;
+      color: var(--slate-900);
+      font-size: 13px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .qa-q span.q-num {
+      background: var(--primary);
+      color: white;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .qa-a {
+      font-size: 12px;
+      color: var(--slate-700);
+      line-height: 1.5;
+    }
+
+    .qa-a strong {
+      color: var(--slate-900);
+    }
+
+    /* Workflow Diagram Box */
+    .diagram-box {
+      background: var(--slate-900);
+      color: #93c5fd;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      line-height: 1.4;
+      white-space: pre;
+      overflow-x: auto;
+      margin: 14px 0;
+    }
+
+    /* Print rules */
+    @media print {
+      body {
+        font-size: 11px;
+        color: #000;
+      }
+      .container {
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-after: always;
+        break-after: page;
+      }
+      .qa-card {
+        page-break-inside: avoid;
+      }
+      table {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- COVER HEADER -->
+  <div class="cover">
+    <div class="badge-bar">
+      <span class="badge badge-primary">Technical Documentation</span>
+      <span class="badge badge-success">Examiner Viva Ready</span>
+      <span class="badge badge-warning">Production Full-Stack SaaS</span>
+    </div>
+    <h1 class="title">CareerForge — AI Resume & Portfolio Studio</h1>
+    <div class="subtitle">Comprehensive System Architecture, Workflow Pipeline & Technical Viva Examination Guide</div>
+
+    <div class="meta-box">
+      <div class="meta-item">
+        <strong>Project Type</strong>
+        <span>Full-Stack SaaS Web App</span>
+      </div>
+      <div class="meta-item">
+        <strong>Frontend / Backend</strong>
+        <span>Next.js 16 (App Router) + TS</span>
+      </div>
+      <div class="meta-item">
+        <strong>Database & ORM</strong>
+        <span>Prisma 6.4 + SQLite</span>
+      </div>
+      <div class="meta-item">
+        <strong>AI Integration</strong>
+        <span>Google Gemini LLM Engine</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: PROJECT ABSTRACT & OBJECTIVES -->
+  <h2 class="section-title">1. Project Abstract & Core Deliverables</h2>
+  <p>
+    <strong>CareerForge</strong> is an enterprise-grade AI-powered resume and portfolio engineering studio. The platform solves the prevalent challenges candidates encounter when applying to modern organizations:
+  </p>
+  <ul>
+    <li><strong>Applicant Tracking System (ATS) Gatekeeping</strong>: Over 75% of resumes are rejected by algorithmic parsers before reaching a human recruiter due to non-compliant layouts, missing keywords, and unquantified bullet points.</li>
+    <li><strong>Design vs. Readability Paradox</strong>: Candidates either build beautiful but unparseable graphic resumes, or drab standard text files that fail to impress human hiring managers.</li>
+    <li><strong>Web Portfolio Disconnect</strong>: Creating a personal developer portfolio typically requires configuring hosting, repositories, and custom CSS, leading to abandoned or outdated personal sites.</li>
+  </ul>
+  <p>
+    CareerForge bridges these gaps with a synchronized dual-column real-time editor, Google Gemini AI integration using the Google XYZ formula, heuristic resume parsing, 8 professionally designed ATS & Pinterest-trending templates, native vector PDF and Word exports, and 1-click personal portfolio generation with public SSR routes.
+  </p>
+
+  <!-- SECTION 2: SYSTEM ARCHITECTURE -->
+  <h2 class="section-title">2. System Architecture & Tech Stack</h2>
+  <p>
+    The platform is architected around the Next.js 16 App Router using a modular server-client boundary.
+  </p>
+
+  <div class="diagram-box">
++-------------------------------------------------------------------------------------------------------+
+|                                    CLIENT BROWSER (REACT 19 UI)                                       |
+|  - Split-Pane Live Canvas       - Pinterest Style Engine       - Real-Time Theme & Font Controls     |
++-------------------------------------------------------------------------------------------------------+
+                                                     |
+                     HTTP JSON (REST API) & HTTP-Only Secure Cookies (JWT)
+                                                     v
++-------------------------------------------------------------------------------------------------------+
+|                                  NEXT.JS 16 APP ROUTER (SERVER)                                       |
+|                                                                                                       |
+|  [Route Handlers / API]           [Core Business Logic]                 [Entitlement Enforcer]        |
+|  - /api/auth/* (Login/JWT)        - Google XYZ Formula Prompts          - Free: 3 Resumes, Standard   |
+|  - /api/resumes/* (CRUD)          - Heuristic PDF/DOCX Parser           - Pro: Unlimited, 8 Templates |
+|  - /api/ai/* (Gemini/Tailor)      - ATS Tokenizer & Scorer              - Stripe INR ₹59 Checkout     |
+|  - /p/[slug] (SSR Portfolio)      - Word OpenXML (docx) Compiler        - Instant Test Plan Switcher  |
++-------------------------------------------------------------------------------------------------------+
+        |                                            |                                      |
+        v                                            v                                      v
++-----------------------+              +---------------------------+              +---------------------+
+|      PRISMA ORM       |              |   GOOGLE GEMINI 2.5 LLM   |              |   STRIPE PAYMENTS   |
+|  - SQLite (dev.db)    |              |   - Multi-Turn Summaries  |              |   - INR (paise: 5900)|
+|  - 7 Relational Models|              |   - Heuristic Fallback    |              |   - Webhook Signature   |
++-----------------------+              +---------------------------+              +---------------------+
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Technologies</th>
+        <th>Justification & Architectural Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend</strong></td>
+        <td>Next.js 16, React 19, Tailwind CSS v4, Lucide Icons</td>
+        <td>App Router enables granular React Server Components (RSC) for lightning-fast initial page loads while providing responsive client-side interactivity on the live split-pane resume canvas.</td>
+      </tr>
+      <tr>
+        <td><strong>Backend API</strong></td>
+        <td>Next.js Server Route Handlers</td>
+        <td>Zero-cold-start API endpoints running in Node.js runtime, enforcing strict type-safe schemas and protecting sensitive API keys (Gemini, Stripe) from browser exposure.</td>
+      </tr>
+      <tr>
+        <td><strong>Database & ORM</strong></td>
+        <td>Prisma 6.4 + SQLite</td>
+        <td>Provides declarative schema modeling, type-safe query generation, foreign key cascades, and automated schema synchronization without manual SQL scripting.</td>
+      </tr>
+      <tr>
+        <td><strong>Authentication</strong></td>
+        <td>Jose (JWT) + BcryptJS</td>
+        <td>Stateless authentication using secure HTTP-only cookies prevents Cross-Site Scripting (XSS) token theft. Bcrypt provides 12-round salted password hashing.</td>
+      </tr>
+      <tr>
+        <td><strong>AI Engine</strong></td>
+        <td>Google Gemini 2.5 Flash + Fallback Engine</td>
+        <td>Generates professional summaries, rewrites accomplishment bullets according to Google's XYZ formula, and extracts job-specific ATS keywords with graceful offline heuristic fallbacks.</td>
+      </tr>
+      <tr>
+        <td><strong>Document Export</strong></td>
+        <td>Native Print CSS + <code>docx</code> library</td>
+        <td>Guarantees true vector PDF output with selectable text and exact page layout, alongside native Microsoft Word OpenXML (`.docx`) file compilation.</td>
+      </tr>
+      <tr>
+        <td><strong>Monetization</strong></td>
+        <td>Stripe API (INR ₹59 / month)</td>
+        <td>Enforces plan entitlements (Free vs. Pro) on the server, creates Stripe Checkout sessions with Indian Rupee (paise) support, and verifies payment statuses.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3: STEP-BY-STEP END-TO-END WORKFLOW -->
+  <h2 class="section-title">3. End-to-End User & Data Workflow</h2>
+
+  <h3 class="sub-title">Stage 1: Candidate Authentication & Profile Initialization</h3>
+  <p>
+    When a user registers or logs in at <code>/auth/login</code>, their password is verified using <code>bcrypt.compare()</code>. Upon successful validation, the server generates a signed JSON Web Token (JWT) with HS256 encryption via the <code>jose</code> library and attaches it as an <code>httpOnly</code>, <code>sameSite: "lax"</code> cookie named <code>careerforge_session</code>. This guarantees the client JavaScript cannot access the raw session token.
+  </p>
+
+  <h3 class="sub-title">Stage 2: Document Creation & Heuristic Parsing</h3>
+  <p>
+    The candidate can either create a resume from scratch or drag-and-drop an existing PDF/DOCX file. The upload endpoint (<code>/api/resumes/upload</code>):
+  </p>
+  <ol>
+    <li>Validates file MIME type and size (&le; 5MB).</li>
+    <li>Parses document streams using <code>pdf-parse</code> (for PDF) or <code>mammoth</code> (for DOCX).</li>
+    <li>Executes heuristic regular expression matching to isolate candidate name, phone number, email address, LinkedIn profile, GitHub handle, education degrees, and work experiences.</li>
+    <li>Computes a completeness score and returns pre-populated structured JSON into the editor.</li>
+  </ol>
+
+  <h3 class="sub-title">Stage 3: Real-Time Split-Pane Editing & Live Rendering</h3>
+  <p>
+    The editor at <code>/resumes/[id]</code> displays a split viewport:
+  </p>
+  <ul>
+    <li><strong>Left Pane (Control Deck)</strong>: Section tabs (Personal Info, Summary, Experience, Education, Skills, Projects, Certifications, Languages, Custom Sections). As the user inputs text, state is managed in React memory.</li>
+    <li><strong>Right Pane (Live Canvas)</strong>: Renders the active template in real time. Changes in font size, accent color (Indigo, Emerald, Rose, Slate, Violet, Amber), page format (A4 / US Letter), and typography style (Sans, Serif, Mono) re-render instantly without full page reloads.</li>
+    <li><strong>Autosave Controller</strong>: Debounces keystrokes by 1,200ms before dispatching an asynchronous <code>PUT</code> request to <code>/api/resumes/[id]</code>.</li>
+  </ul>
+
+  <h3 class="sub-title">Stage 4: AI Writing Assistant & ATS Tailoring Engine</h3>
+  <p>
+    When the candidate clicks <strong>"Improve with AI"</strong> on an experience bullet or <strong>"ATS Tailor"</strong> with a target job description:
+  </p>
+  <ol>
+    <li>The server invokes Google Gemini API with system instructions enforcing the <strong>Google XYZ Formula</strong>: <em>"Accomplished [X], measured by [Y], by doing [Z]"</em>.</li>
+    <li>The ATS Scanner extracts unigrams and bigrams from both the resume and the job description, removes standard English stopwords, calculates exact and fuzzy keyword overlap, and generates a match score (0-100%).</li>
+    <li>If the external Gemini API is unreachable or rate-limited, CareerForge seamlessly activates its internal rule-based heuristic rewriting algorithm, ensuring zero user-facing downtime.</li>
+  </ol>
+
+  <h3 class="sub-title">Stage 5: High-Fidelity Export Pipeline</h3>
+  <ul>
+    <li><strong>PDF Export</strong>: Invokes native browser vector printing (<code>window.print()</code>) with custom <code>@media print</code> CSS rules that isolate the resume canvas, hide UI headers and sidebars, force exact millimeter margins, and prevent split lines across page boundaries.</li>
+    <li><strong>DOCX Export</strong>: The server route <code>/api/resumes/[id]/export/docx</code> constructs a native Microsoft Word OpenXML document using the <code>docx</code> library, formatting bold titles, bullet lists, and section dividers natively.</li>
+  </ul>
+
+  <h3 class="sub-title">Stage 6: 1-Click Portfolio Website Publishing</h3>
+  <p>
+    With one click on <strong>"Publish Portfolio"</strong>, the application transforms the candidate's structured resume data into a responsive personal website deployed at <code>/p/[slug]</code>. The portfolio features 4 interchangeable themes (Minimalist Slate, Tech Dark Obsidian, Editorial Serif, Creative Warmth), a working contact form, social links, and an automated view analytics tracker.
+  </p>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 4: DEEP DIVE INTO PINTEREST RESUME TEMPLATES -->
+  <h2 class="section-title">4. Deep Dive: Pinterest-Trending Templates Engine</h2>
+  <p>
+    CareerForge implements 8 distinctive resume templates, with exclusive focus on current Pinterest, Behance, and Dribbble design trends for modern professional resumes:
+  </p>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">A</span> Swiss Split Sidebar Template (`swiss-sidebar`) — #1 Viral Layout on Pinterest</div>
+    <div class="qa-a">
+      <strong>Visual Architecture:</strong> An asymmetrical two-column layout consisting of a tinted 33% width left column and a 67% white/neutral right column.<br>
+      <strong>Left Column Elements:</strong> Circular monogram avatar with candidate initials, stacked contact icons (Email, Phone, Location, LinkedIn, GitHub), education timeline, categorized skill badges, spoken languages with visual proficiency bars, and certifications.<br>
+      <strong>Right Column Elements:</strong> Bold modern sans-serif masthead, italicized executive pull-quote summary, and an <strong>interactive connected vertical timeline rail</strong> where each job experience is represented by an accent-colored circle node connected by an unbroken vertical SVG line.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">B</span> Quiet Luxury Editorial Template (`editorial-luxury`) — Haute-Couture Roman Serif</div>
+    <div class="qa-a">
+      <strong>Visual Architecture:</strong> Inspired by high-end architectural and fashion editorial publications (Vogue, Kinfolk, Architectural Digest).<br>
+      <strong>Typographic System:</strong> Roman serif typography (Playfair Display / Cormorant Garamond), wide letter-spacing (<code>tracking-[0.25em]</code>), and centered header hierarchy.<br>
+      <strong>Numbered Index System:</strong> Each section is identified by a prominent numeric index: <code>01 / EXECUTIVE SUMMARY</code>, <code>02 / CAREER TRAJECTORY</code>, <code>03 / ACADEMIC CREDENTIALS</code>, <code>04 / VENTURES & PROJECTS</code>.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">C</span> Nordic Clean Template (`nordic-clean`) — Bauhaus Asymmetric Minimalist</div>
+    <div class="qa-a">
+      <strong>Visual Architecture:</strong> Functional Bauhaus design with stark contrast, sharp rectangular accent indicators, and structured multi-column grid layouts for quick skimming by senior engineering leadership and recruiters.
+    </div>
+  </div>
+
+  <!-- SECTION 5: VIVA DEMONSTRATION SCRIPT -->
+  <h2 class="section-title">5. Step-by-Step Live Viva Demonstration Script</h2>
+  <p>Follow this exact sequence when demonstrating CareerForge to the examiner:</p>
+
+  <div class="callout callout-success">
+    <strong>Examiner Demo Checklist:</strong>
+    <ol style="margin-left: 18px; margin-top: 6px;">
+      <li><strong>Login & Authentication</strong>: Navigate to <code>http://localhost:3000/auth/login</code> and sign in with <code>demo@careerforge.io</code> / <code>CareerForge123!</code>. Highlight HTTP-only cookie security.</li>
+      <li><strong>Dashboard Navigation</strong>: Show the active resumes list, portfolio links, ATS score indicators, and usage metrics.</li>
+      <li><strong>Resume Editor & Live Split-Pane</strong>: Open a resume. Type into the "Full Name" field and show how the live canvas on the right updates instantly in real time without lag.</li>
+      <li><strong>Pinterest Templates</strong>: In the template selector, switch to <strong>Swiss Split Sidebar</strong>. Point out the monogram badge, tinted sidebar, and connected timeline rail. Then switch to <strong>Quiet Luxury Editorial</strong> to show the numbered magazine headers.</li>
+      <li><strong>AI Assistant (Google XYZ Formula)</strong>: Click "Improve with AI" next to an experience bullet. Show how the passive bullet is rewritten with quantified metrics and action verbs.</li>
+      <li><strong>Job Description Tailoring</strong>: Open the ATS Tailor tool, paste a sample job description, and run the scan. Show the 0-100% match score and the extracted missing keywords.</li>
+      <li><strong>Document Export</strong>: Click "Export PDF" to show clean vector PDF generation with zero broken margins. Then click "Word DOCX" to demonstrate native file generation.</li>
+      <li><strong>Live Portfolio Website</strong>: Click "View Portfolio" to open <code>/p/alex-rivera</code>. Show the theme switcher, responsive layout, and contact form.</li>
+      <li><strong>Settings & Monetization (₹59 INR)</strong>: Open Settings, show the ₹59 INR subscription breakdown, and click "Switch to Pro (Test Mode)" to demonstrate instant server-enforced entitlement toggling.</li>
+    </ol>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 6: TOP 25 TECHNICAL VIVA QUESTIONS & MODEL ANSWERS -->
+  <h2 class="section-title">6. Top 25 Technical Viva Questions & Examiner Answers</h2>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q1</span> What is Next.js 16 App Router and why did you choose it over traditional React (Vite/CRA)?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Next.js 16 App Router provides hybrid rendering: React Server Components (RSC) for zero-client-bundle server rendering (used for SEO-critical routes like public portfolios at <code>/p/[slug]</code>) combined with Client Components for rich interactive editors. Unlike Vite or CRA which send blank HTML files requiring heavy client hydration, Next.js provides instant first contentful paint (FCP) and native API route handlers in a unified full-stack architecture.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q2</span> How is user authentication implemented and secured against common vulnerabilities?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> We implemented stateless JWT authentication using the <code>jose</code> library and <code>bcryptjs</code>. Passwords are salted and hashed with 12 rounds before database insertion. The signed JWT session token is stored in an <code>httpOnly</code> cookie with <code>SameSite: "lax"</code> and <code>secure</code> flags. This prevents Cross-Site Scripting (XSS) attacks from accessing the token via <code>document.cookie</code>, while the SameSite attribute mitigates Cross-Site Request Forgery (CSRF).
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q3</span> How does the resume live preview synchronize with the editor without performance degradation?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> We separate local component state from database persistence. Keystrokes immediately update React component state in memory, triggering instant sub-tree re-rendering of the preview canvas. To prevent overwhelming the database with network requests on every keypress, we utilize a 1,200ms debounce timer before making an asynchronous <code>PUT</code> request to update the database record.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q4</span> How does the AI Bullet Improver apply Google's XYZ formula?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Google's XYZ formula states: <em>"Accomplished [X], measured by [Y], by doing [Z]"</em>. Our prompt engineering pipeline enforces this structure via system instructions given to the Google Gemini model, requiring it to identify the core action (Z), extract or estimate the business impact (X), and quantify the measurable outcome (Y with percentages, dollar savings, or latency reductions) without fabricating candidate experience.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q5</span> How does the ATS Keyword Matching algorithm work?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> The algorithm performs lexical analysis: it lowercases both text sources, strips standard English stopwords (e.g., 'and', 'the', 'with'), and extracts unigram and bigram tokens. It then calculates the frequency and intersection between the job description's requirement tokens and the resume's content tokens. The final score is normalized between 0-100%, and unreferenced keywords are flagged as "Missing Critical Keywords" for candidate optimization.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q6</span> What happens if the Google Gemini API fails, times out, or exhausts its quota?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> CareerForge implements an intelligent dual-engine architecture in <code>src/lib/ai.ts</code>. The system first attempts to communicate with the Gemini API. If the call rejects (due to network timeout, HTTP 429 rate limit, or invalid credentials), the error is caught gracefully and redirected to our built-in heuristic rule-based engine, which applies local grammatical transformations and action-verb substitutions. The user experience remains seamless without errors.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q7</span> How did you implement Pinterest-trending templates like Swiss Split Sidebar and Quiet Luxury?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> In <code>src/components/ResumePreview.tsx</code>, we used modern CSS Grid and Flexbox layouts. For the Swiss Sidebar, we engineered a 33%/67% split where the left column features a calculated monogram initials badge and stacked SVG icon rows, while the right column features a continuous vertical SVG timeline rail with node circles positioned at each experience entry. For Quiet Luxury, we applied high-fashion serif styling with wide letter-spacing (<code>tracking-[0.25em]</code>) and numbered section indices (<code>01 /</code>, <code>02 /</code>).
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q8</span> How does PDF export differ from typical client-side canvas rendering (html2canvas)?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Libraries like <code>html2canvas</code> convert DOM nodes into rasterized PNG images before embedding them into a PDF. This results in blurry text on zoom, unclickable hyperlinks, huge file sizes, and broken page splits. CareerForge uses pure vector Print CSS with <code>@media print</code>, isolating the exact resume node, setting vector millimeter dimensions (A4/Letter), and invoking browser print engines to produce crystal-clear, selectable, searchable vector PDFs.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q9</span> How does native Word (.docx) export work?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> In <code>src/lib/docx-export.ts</code>, we use the <code>docx</code> library to programmatically generate Microsoft OpenXML document specifications. We instantiate structured Document paragraphs, heading runs, bullet point formatting, and font definitions, which are packed into a binary blob and sent with the appropriate MIME type <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q10</span> How is the personal portfolio website rendered at <code>/p/[slug]</code>?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> The route <code>/p/[slug]</code> is a dynamic Next.js App Router page. The server extracts the slug parameter, queries the database via Prisma (<code>prisma.portfolio.findUnique({ where: { slug } })</code>), increments the view counter asynchronously, and renders the selected theme (Slate, Dark Obsidian, Editorial, Creative) as responsive HTML with full OpenGraph metadata for social sharing.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q11</span> What database ORM did you use and why Prisma?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> We used Prisma 6.4 with SQLite. Prisma provides a declarative <code>schema.prisma</code> file that defines entities and relations (e.g., One-to-Many between User and Resumes, and One-to-One between Resume and Portfolio). Prisma auto-generates a fully typed TypeScript client, eliminating runtime SQL injection vulnerabilities through parameterized queries and catching query bugs at compile time.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q12</span> How do you prevent unauthorized users from editing other people's resumes?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Every resume route handler (<code>GET</code>, <code>PUT</code>, <code>DELETE</code> in <code>src/app/api/resumes/[id]/route.ts</code>) first extracts the authenticated user ID from the verified JWT cookie. It then queries the database for the requested resume with both <code>id: resumeId</code> and <code>userId: authenticatedUserId</code>. If no matching record is found, the server immediately returns an HTTP 404/403 Forbidden response.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q13</span> Explain the monetization and plan entitlement structure.</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> We implement a freemium model. The Free tier permits up to 3 active resumes and standard templates. The Pro tier (priced at ₹59 INR / month) unlocks unlimited resumes, all 8 premium templates (including Pinterest Swiss and Editorial Luxury), unlimited AI tailoring, and portfolio generation. All entitlements are verified server-side in API route handlers before persisting changes.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q14</span> Why did you use Indian Rupees (INR ₹59) in Stripe and how is it formatted?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Stripe requires the smallest currency unit for all amounts. In Indian Rupees, 1 INR equals 100 paise. Therefore, the ₹59 subscription is represented as <code>unit_amount: 5900</code> with <code>currency: "inr"</code> in Stripe Checkout session creation parameters.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q15</span> What is Tailwind CSS v4 and how does it benefit CareerForge?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Tailwind CSS v4 is a high-performance CSS-first framework built on Lightning CSS. It eliminates the traditional <code>tailwind.config.js</code> file in favor of modern CSS theme variables, compiles up to 10x faster, and enables clean utility classes for responsive breakpoints, dark mode, and custom spacing.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q16</span> How does the document upload parser extract resume fields from uploaded PDFs?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> The parser receives a multipart FormData file stream, reads the buffer into memory, and feeds it to <code>pdf-parse</code>. The extracted plain text is analyzed line-by-line using regex heuristics to match email patterns (<code>[\w.-]+@[\w.-]+\.\w+</code>), phone formats, standard section headers ('Experience', 'Education', 'Skills'), and date ranges to populate structured JSON.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q17</span> What is a debounce function and why is it essential in autosave?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Debouncing delays the execution of a function until a specified period of inactivity has elapsed. Without debouncing, typing a 500-word paragraph would trigger 2,500 simultaneous database write requests. Our 1,200ms debounce ensures that only one consolidated network request is dispatched once the candidate pauses typing.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q18</span> How do you handle password reset securely?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> The user requests a reset link at <code>/auth/forgot-password</code>. The server generates a cryptographically secure random token with an expiration timestamp and saves it to the user record. A reset link containing the token is delivered. Upon submission at <code>/auth/reset-password</code>, the token is verified, the new password is hashed with bcrypt, and the reset token is invalidated.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q19</span> How do you manage version history and document recovery?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> In our Prisma schema, the <code>ResumeVersion</code> model stores a snapshot of the resume's complete JSON state, an optional change summary, and a timestamp. When a candidate requests a restore via <code>/api/resumes/[id]/versions/[versionId]/restore</code>, the resume data is replaced with the snapshot payload in an atomic transaction.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q20</span> What are the advantages of Server-Side Rendering (SSR) for the public portfolio route?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> SSR ensures that search engines (Google, Bing) and social media crawlers (LinkedIn, Twitter) receive fully populated HTML with meta tags, OpenGraph previews, and resume content without needing to execute client JavaScript. This maximizes search engine ranking and social sharing click-through rates.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q21</span> How does CareerForge protect against SQL injection?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> CareerForge relies exclusively on Prisma ORM for all database operations. Prisma uses parameterized queries under the hood, ensuring user inputs are treated strictly as data parameters rather than executable SQL commands, completely neutralizing SQL injection risks.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q22</span> What is the difference between client-side and server-side validation in CareerForge?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Client-side validation (HTML5 forms, React state checks) provides immediate visual feedback to the user (e.g., highlighting invalid email formats). Server-side validation (in Next.js Route Handlers) is the authoritative security layer that re-validates types, lengths, and entitlements to prevent bypass via curl or automated API scripts.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q23</span> How is state managed in the Next.js frontend?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Local form state is managed via React hooks (<code>useState</code>, <code>useCallback</code>, <code>useRef</code>). Server data fetching is orchestrated via asynchronous <code>fetch()</code> inside <code>useEffect()</code>. Reusable UI state (such as active modals and template selections) is lifted to parent component containers to ensure clean unidirectional data flow.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q24</span> How does the test mode switcher assist during evaluation?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> In <strong>Settings &rarr; Subscription</strong>, we provided an evaluator test mode switcher (<code>/api/billing/test-toggle</code>). This allows academic evaluators and examiners to toggle an account between the Free and Pro tiers instantly without entering real credit card details, enabling live demonstration of both free limits and locked Pinterest templates.
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><span class="q-num">Q25</span> How is CareerForge deployed for production?</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> The codebase is pushed to GitHub at <code>ANNIEEONE/careerforge</code>. It is configured for deployment on Netlify using <code>@netlify/plugin-nextjs</code> and <code>netlify.toml</code>, running automated builds with <code>prisma generate && prisma db push && next build</code> to provide continuous integration and globally distributed CDN delivery.
+    </div>
+  </div>
+
+  <!-- SUMMARY FOOTER -->
+  <div style="margin-top: 40px; border-top: 1px solid var(--slate-200); padding-top: 20px; text-align: center; font-size: 11px; color: var(--slate-600);">
+    <strong>CareerForge Studio</strong> — AI Resume & Portfolio Studio • Prepared for Technical Examination & Viva Demonstration • 2026
+  </div>
+
+</div>
+
+</body>
+</html>
