@@ -36,7 +36,7 @@ export default function LandingPage() {
     },
     {
       q: "What is the difference between Free and Pro tiers?",
-      a: "The Free plan allows you to create up to 3 resumes, access our standard ATS templates, and run up to 15 AI writing assistance actions. The Pro plan provides unlimited resumes, all 5 premium templates, unlimited AI job tailoring scans, and cover letter synthesis.",
+      a: "The Free plan allows you to create up to 3 resumes, access our standard ATS templates, and run up to 15 AI writing assistance actions. The Pro plan (₹59/mo) provides unlimited resumes, all premium Pinterest & executive templates (Swiss Split Sidebar, Quiet Luxury Editorial, Silicon Tech Matrix, Nordic Bauhaus, Ivy League), unlimited AI job tailoring scans, and cover letter synthesis.",
     },
   ];
 
@@ -331,7 +331,7 @@ export default function LandingPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />
-                    <strong>All 5 Premium ATS Templates</strong> (Executive, Tech, Creative)
+                    <strong>All 8 Premium Pinterest & ATS Templates</strong> (Swiss Sidebar, Quiet Luxury, Nordic, Tech Matrix)
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />

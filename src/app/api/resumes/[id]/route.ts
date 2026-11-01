@@ -80,7 +80,14 @@ export async function PUT(request: Request, { params }: RouteParams) {
   const body = await request.json();
 
   // Entitlement enforcement: Pro templates require PRO plan
-  const proTemplates = ["executive", "technical", "creative"];
+  const proTemplates = [
+    "executive",
+    "technical",
+    "creative",
+    "swiss-sidebar",
+    "editorial-luxury",
+    "nordic-clean",
+  ];
   if (body.templateId && proTemplates.includes(body.templateId) && user.plan !== "PRO") {
     return NextResponse.json(
       {

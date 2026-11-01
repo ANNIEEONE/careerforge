@@ -75,6 +75,7 @@ function ResumeEditorContent({ params }: PageProps) {
   const [aiSummaryLoading, setAiSummaryLoading] = useState(false);
   const [aiBulletLoadingId, setAiBulletLoadingId] = useState<string | null>(null);
   const [aiSkillLoading, setAiSkillLoading] = useState(false);
+  const [userPlan, setUserPlan] = useState<"FREE" | "PRO">("FREE");
 
   // Fetch initial resume data
   const loadResume = useCallback(async () => {
@@ -95,6 +96,12 @@ function ResumeEditorContent({ params }: PageProps) {
 
   useEffect(() => {
     loadResume();
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.user?.plan) setUserPlan(data.user.plan);
+      })
+      .catch(() => {});
   }, [loadResume]);
 
   // Autosave function with debounce
@@ -1220,49 +1227,85 @@ function ResumeEditorContent({ params }: PageProps) {
             {activeTab === "design" && (
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
-                    ATS-Optimized Templates
-                  </h3>
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Resume Templates & Pinterest Luxury Layouts
+                    </h3>
+                    <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">
+                      8 Designer Layouts
+                    </span>
+                  </div>
                   <p className="text-xs text-slate-500 mb-4">
-                    Switch styles with zero content loss. Each layout is tested for parser readability.
+                    Modeled after trending Pinterest, Behance & Ivy League layouts with zero content loss.
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {RESUME_TEMPLATES.map((tmpl) => {
                       const isSelected = resume.templateId === tmpl.id;
+                      const isLocked = tmpl.isPro && userPlan !== "PRO";
+
                       return (
                         <div
                           key={tmpl.id}
-                          onClick={() =>
+                          onClick={() => {
+                            if (isLocked) {
+                              setError(
+                                `"${tmpl.name}" is a Premium Pro template. Upgrade to Pro for ₹59/month (or switch to Pro in Settings) to unlock.`
+                              );
+                              return;
+                            }
+                            setError(null);
                             updateResume((prev) => ({
                               ...prev,
                               templateId: tmpl.id,
                               typography: { ...prev.typography, accentColor: tmpl.accentColor },
-                            }))
-                          }
-                          className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
+                            }));
+                          }}
+                          className={`p-3.5 rounded-xl border cursor-pointer transition-all relative ${
                             isSelected
                               ? "border-blue-600 bg-blue-50/50 dark:bg-blue-950/30 ring-2 ring-blue-500/20"
+                              : isLocked
+                              ? "border-slate-200 dark:border-slate-800 hover:border-amber-300 opacity-90"
                               : "border-slate-200 dark:border-slate-800 hover:border-slate-300"
                           }`}
                         >
                           <div className="flex items-center justify-between mb-1.5">
-                            <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                            <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5 flex-wrap">
                               {tmpl.name}
-                              {tmpl.isPro && (
-                                <span className="text-[9px] uppercase font-bold tracking-wide px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                              {tmpl.tag && (
+                                <span className="text-[8px] uppercase font-extrabold tracking-wide px-1.5 py-0.2 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300">
+                                  {tmpl.tag}
+                                </span>
+                              )}
+                              {tmpl.isPro ? (
+                                <span className="text-[8px] uppercase font-bold tracking-wide px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
                                   Pro
+                                </span>
+                              ) : (
+                                <span className="text-[8px] uppercase font-bold tracking-wide px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                                  Free
                                 </span>
                               )}
                             </span>
                             <div
-                              className="h-3 w-3 rounded-full"
+                              className="h-3 w-3 rounded-full shrink-0 shadow-xs"
                               style={{ backgroundColor: tmpl.accentColor }}
                             />
                           </div>
+
+                          <span className="inline-block text-[9px] uppercase tracking-wider font-semibold text-slate-400 mb-1">
+                            {tmpl.category}
+                          </span>
+
                           <p className="text-[11px] text-slate-500 leading-snug">
                             {tmpl.description}
                           </p>
+
+                          {isLocked && (
+                            <div className="mt-2 text-[10px] font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                              <span>🔒 Pro Only (₹59/mo)</span>
+                            </div>
+                          )}
                         </div>
                       );
                     })}

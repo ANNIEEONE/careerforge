@@ -417,7 +417,7 @@ function SettingsContent() {
                     </div>
                     <p className="text-xs text-slate-500 mt-1">
                       {plan === "PRO"
-                        ? "Unlimited resumes, all 5 ATS templates, and unlimited AI tailoring."
+                        ? "Unlimited resumes, all 8 Pinterest & ATS templates, and unlimited AI tailoring."
                         : "Limited to 3 resumes, standard templates, and 15 monthly AI credits."}
                     </p>
                   </div>
@@ -451,7 +451,7 @@ function SettingsContent() {
 
                     <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-1">
                       <span className="font-semibold block text-slate-900 dark:text-white">ATS Templates</span>
-                      <span className="text-slate-500">{plan === "PRO" ? "All 5 Templates (Executive, Tech, Creative)" : "Modern & Minimalist"}</span>
+                      <span className="text-slate-500">{plan === "PRO" ? "All 8 Templates (Swiss Sidebar, Quiet Luxury, Tech Matrix, Nordic, Executive, Creative)" : "Modern & Minimalist"}</span>
                     </div>
 
                     <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-1">

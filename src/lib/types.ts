@@ -85,7 +85,15 @@ export interface CustomSection {
   items: CustomSectionItem[];
 }
 
-export type TemplateId = "modern" | "minimal" | "executive" | "technical" | "creative";
+export type TemplateId =
+  | "modern"
+  | "minimal"
+  | "executive"
+  | "technical"
+  | "creative"
+  | "swiss-sidebar"
+  | "editorial-luxury"
+  | "nordic-clean";
 
 export interface TypographyConfig {
   font: "inter" | "serif" | "mono" | "system";
