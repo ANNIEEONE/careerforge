@@ -30,12 +30,12 @@ export async function POST() {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "inr",
             product_data: {
               name: "CareerForge Pro Subscription",
               description: "Unlimited AI tailoring, premium ATS templates, full portfolio publishing, and cover letters.",
             },
-            unit_amount: 1900, // $19.00 / month
+            unit_amount: 5900, // ₹59.00 / month (5900 paise)
             recurring: { interval: "month" },
           },
           quantity: 1,

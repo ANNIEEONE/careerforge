@@ -402,7 +402,7 @@ function SettingsContent() {
                     </span>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-2xl font-black text-slate-900 dark:text-white">
-                        {plan === "PRO" ? "Pro Studio" : "Free Starter"}
+                        {plan === "PRO" ? "Pro Studio (₹59/mo)" : "Free Starter"}
                       </span>
                       {plan === "PRO" ? (
                         <span className="px-2 py-0.5 text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 rounded-full flex items-center gap-1">

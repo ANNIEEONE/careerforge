@@ -270,7 +270,7 @@ export default function LandingPage() {
                 <p className="text-xs text-slate-500 mt-1">Perfect for drafting your standard resume.</p>
                 
                 <div className="mt-6 mb-6">
-                  <span className="text-4xl font-extrabold text-slate-900 dark:text-white">$0</span>
+                  <span className="text-4xl font-extrabold text-slate-900 dark:text-white">₹0</span>
                   <span className="text-xs text-slate-500 ml-2">/ month</span>
                 </div>
 
@@ -320,7 +320,7 @@ export default function LandingPage() {
                 <p className="text-xs text-slate-500 mt-1">For active job seekers who want maximal conversion.</p>
                 
                 <div className="mt-6 mb-6">
-                  <span className="text-4xl font-extrabold text-slate-900 dark:text-white">$19</span>
+                  <span className="text-4xl font-extrabold text-slate-900 dark:text-white">₹59</span>
                   <span className="text-xs text-slate-500 ml-2">/ month</span>
                 </div>
 

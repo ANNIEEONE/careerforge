@@ -48,7 +48,7 @@ CareerForge is a production-ready, full-stack SaaS web application designed to h
 
 ### 5. Freemium Monetization & Server-Enforced Entitlements
 - **Free Starter Plan**: Up to 3 active resumes, standard templates, 15 AI actions/month, PDF/DOCX exports, 1 portfolio.
-- **Pro Studio Plan ($19/mo)**: Unlimited resumes, all 5 premium templates, unlimited AI tailoring, cover letter generator, custom slug priority.
+- **Pro Studio Plan (₹59/mo)**: Unlimited resumes, all 5 premium templates, unlimited AI tailoring, cover letter generator, custom slug priority.
 - **Stripe Integration & Evaluator Test Switcher**:
   - Production-ready Stripe Checkout session and webhook endpoints.
   - Built-in **Instant Test Switcher** in Settings & Billing to test Pro features without needing live credit card charges.
