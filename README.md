@@ -6,7 +6,12 @@
 [![Prisma](https://img.shields.io/badge/Prisma-6.4.1-2D3748?logo=prisma)](https://www.prisma.io/)
 [![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini_LLM-orange?logo=google)](https://aistudio.google.com/)
 [![Stripe](https://img.shields.io/badge/Monetization-Stripe_₹59_INR-635BFF?logo=stripe)](https://stripe.com/)
+[![Netlify Status](https://img.shields.io/badge/Netlify-Live_Deploy-00C7B7?logo=netlify)](https://careerforge-studio.netlify.app)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+> 🌐 **Live Netlify Production URL**: [https://careerforge-studio.netlify.app](https://careerforge-studio.netlify.app)  
+> 📑 **Viva & Technical Workflow Guide (PDF)**: [Download Viva PDF](https://careerforge-studio.netlify.app/CareerForge_Viva_and_Workflow_Guide.pdf) | [View Online HTML](https://careerforge-studio.netlify.app/viva-workflow-guide.html)  
+> 💻 **GitHub Repository**: [https://github.com/ANNIEEONE/careerforge](https://github.com/ANNIEEONE/careerforge)
 
 **CareerForge** is a production-ready, full-stack SaaS web application engineered to help software engineers, designers, product managers, and modern professionals architect ATS-proof resumes, tailor them against real job descriptions using Google Gemini AI, export vector PDFs and native Microsoft Word `.docx` files, and publish live personal developer portfolios with custom public URLs.
 
